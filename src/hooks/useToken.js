@@ -1,17 +1,18 @@
 import { useState } from "react";
 
+// custom hook
 export default function useToken() {
-  // get token from session storage
+  // get token from local storage
   const getToken = () => {
     const tokenString = localStorage.getItem("token");
     const token = JSON.parse(tokenString);
     return token?.token; // the api push object {token: hash}
   };
 
-  // this line triggers a componente re-render
+  // this triggers a component re-render
   const [token, setToken] = useState(getToken());
 
-  // set token to session storage
+  // set token to local storage
   const saveToken = (userToken) => {
     localStorage.setItem("token", JSON.stringify(userToken));
     setToken(userToken);
